@@ -1,0 +1,171 @@
+body{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    color: #000;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.row{
+    display: inline-flex;
+    margin-top: -32px;
+    margin-left: -50px;
+}
+
+.row:nth-child(even){
+    margin-left: 2px;
+}
+
+.hexagon{
+    width: 100px;
+    height: 110px;
+    margin: 2px;
+    background-color: #111;
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    animation: animation 4s linear infinite;
+    transition: 1s;
+}
+
+.hexagon:hover{
+    background-color: #0f0;
+    transition: 0s;
+}
+
+@keyframes animation{
+    0%{
+        filter: hue-rotate(0deg);
+    }
+    100%{
+        filter: hue-rotate(360deg);
+    }
+}
+
+.hexagon::after{
+    content: '';
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 4px;
+    right: 4px;
+    background-color: #111;
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.hexagon::before{
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.03);
+    z-index: 2;
+}
+
+.flip-container{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    perspective: 1000px;
+    z-index: 10;
+}
+
+.back{
+    background-size: cover;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+    transform: rotateY(180deg);
+    z-index: 2;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.front{
+    background-size: cover;
+    background-color: #fff;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+    transform: rotateY(0deg);
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+.flip-container,
+.front,
+.back{
+    height: 350px;
+    width: 600px;
+}
+
+.flip-container:hover .flipper{
+    transform: rotateY(180deg);
+    cursor: pointer;
+}
+
+.flipper{
+    transition: .5s;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.front,
+.back{
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.front img.passport-photo{
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+h1, p, .info{
+    color: #000;
+    font-family: 'Times New Roman', Times, serif;
+    line-height: 90%;
+}
+
+h1{
+    margin-top: 5%;
+}
+
+p{
+    font-size: 16px;
+    padding-bottom: 15px;
+    width: 200px;
+    border-bottom: 2px solid #000;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.info{
+    margin-top: 25px;
+}
+
+.info-group{
+    margin-top: 8px;
+}
+
+.front .info span,
+.front .info a{
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.back img{
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
